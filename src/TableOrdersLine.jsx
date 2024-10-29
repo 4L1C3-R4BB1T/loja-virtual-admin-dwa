@@ -13,11 +13,13 @@ const TableOrdersLine = ({ item, handleCancelOrder, handleEvolveOrder }) => {
                     <i className="bi bi-zoom-in"></i>
                 </Link>
                 {(!["carrinho", "pendente", "cancelado", "entregue"].includes(item.estado)) &&
-                    <button className="btn btn-outline-success btn-sm me-1" title="Progredir Estado" onClick={() => handleEvolveOrder(item.id)}>
+                    <button className="btn btn-outline-success btn-sm me-1" title="Progredir Estado"
+                        onClick={() => handleEvolveOrder(item.id)}>
                         <i className="bi bi-arrow-right-circle"></i>
                     </button>}
                 {(item.estado == "pendente") &&
-                    <button className="btn btn-outline-danger btn-sm" title="Cancelar Pedido" onClick={() => handleCancelOrder(item.id)}>
+                    <button className="btn btn-outline-danger btn-sm" title="Cancelar Pedido"
+                        onClick={() => handleCancelOrder(item.id)}>
                         <i className="bi bi-x-circle"></i>
                     </button>}
             </td>

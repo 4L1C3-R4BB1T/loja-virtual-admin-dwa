@@ -54,7 +54,8 @@ const Users = () => {
         <>
             {users.length > 0 ?
                 <>
-                    <ModalConfirm modalId="modelDeleteUser" question="Deseja realmente excluir o usuário?" confirmAction={() => deleteUser(selectedUserId)} />
+                    <ModalConfirm modalId="modelDeleteUser" question="Deseja realmente excluir o usuário?"
+                        confirmAction={() => deleteUser(selectedUserId)} />
                     <TableUsers items={users} handleDeleteUser={handleDeleteUser} />
                 </> :
                 (!loading && <NoUsers />)}

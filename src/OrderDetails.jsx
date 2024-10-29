@@ -6,30 +6,26 @@ import { CurrencyFormatter, DateTimeFormatter, NumberFormatter, StringFormatter 
 
 const OrderDetails = () => {
     const [order, setOrder] = useState(null)
-    const [ loading, setLoading] = useState(true)
+    const [loading, setLoading] = useState(true)
     const orderId = useParams().id
     const navigate = useNavigate()
 
-    useEffect(() =>{
-        setLoading(true)
-        api.get(`obter_pedido/${orderId}`).then(response =>{
-            if(response.status === 200){
-                setOrder(response.data)
-            }else{
-                navigate("/orders")
-            }
-        })
-        .catch(error => {
-            console.log("Erro ao carregar pedido:", error)
-            navigate("/orders")
-        })
-        .finally(()=>{
-            setLoading(false)
-        }
-        )
-    }, [orderId])
+    useEffect(() => {
+        setLoading(true);
+        api.get(`obter_pedido/${orderId}`)
+            .then(response => {
+                response.status === 200 ? setOrder(response.data) : navigate("/orders");
+            })
+            .catch(error => {
+                console.log("Erro ao carregar pedido:", error);
+                navigate("/orders");
+            })
+            .finally(() => {
+                setLoading(false);
+            })
+    }, [orderId]);
 
-    if(!order){
+    if (!order) {
         return <p>Carregando detalhes do pedido...</p>
     }
 
@@ -53,27 +49,24 @@ const OrderDetails = () => {
                     <b>Itens do Pedido </b>              
                 </p>
                 <table className='table table-striped table-sm mb-0'>
-                <thead>
-                <tr>
-                        <th>Produto</th>
-                        <th>Valor Unit.</th>
-                        <th>Qtde</th>
-                        <th>Valor Item</th>
-                    </tr>
-
-                </thead>
-                   <tbody>
-                   {order.itens.map((item, index) =>
+                    <thead>
+                        <tr>
+                            <th>Produto</th>
+                            <th>Valor Unit.</th>
+                            <th>Qtde</th>
+                            <th>Valor Item</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {order.itens.map((item, index) =>
                         <tr key={index}>
                             <td>{item.nome_produto}</td>
                             <td>{CurrencyFormatter.format(item.valor_produto)}</td>
                             <td>{NumberFormatter.format(item.quantidade)}</td>
                             <td>{CurrencyFormatter.format(item.valor_item)}</td>
-
                         </tr>
                     )}
-                   </tbody>
-                   
+                    </tbody>
                 </table>
             </div>
         </>

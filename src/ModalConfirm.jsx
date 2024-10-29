@@ -11,8 +11,10 @@ const ModalConfirm = ({ question, confirmAction, cancelAction, modalId }) => {
                         {question}
                     </div>
                     <div className="modal-footer">
-                        <button type="button" className="btn btn-secondary" data-bs-dismiss="modal" onClick={cancelAction}>Não</button>
-                        <button type="button" className="btn btn-primary" data-bs-dismiss="modal" onClick={confirmAction}>Sim</button>
+                        <button type="button" className="btn btn-secondary" data-bs-dismiss="modal"
+                            onClick={cancelAction}>Não</button>
+                        <button type="button" className="btn btn-primary" data-bs-dismiss="modal"
+                            onClick={confirmAction}>Sim</button>
                     </div>
                 </div>
             </div>

@@ -30,8 +30,9 @@ const Orders = () => {
         setLoading(true);
         api.post(`cancelar_pedido/${orderId}`)
             .then(response => {
-                if (response.status === 204)
+                if (response.status === 204) {
                     loadOrders(orderState);
+                }
             })
             .catch(error => {
                 console.error('Erro ao cancelar pedido:', error);
@@ -45,8 +46,9 @@ const Orders = () => {
         setLoading(true);
         api.post(`evoluir_pedido/${orderId}`)
             .then(response => {
-                if (response.status === 204)
+                if (response.status === 204) {
                     loadOrders(orderState);
+                }
             })
             .catch(error => {
                 console.error('Erro ao evoluir pedido:', error);
@@ -75,7 +77,8 @@ const Orders = () => {
     return (
         <>
             <div className="form-floating my-3">
-                <select id="orderState" value={orderState} onChange={(event) => setOrderState(event.target.value)} className="form-control">
+                <select id="orderState" value={orderState}
+                    onChange={(event) => setOrderState(event.target.value)} className="form-control">
                     <option value="carrinho">Carrinho</option>
                     <option value="pendente">Pendente</option>
                     <option value="pago">Pago</option>
@@ -91,9 +94,11 @@ const Orders = () => {
             </div>
             {orders.length > 0 ?
                 <>
-                    <ModalConfirm modalId="modalCancelOrder" question="Deseja realmente cancelar o pedido?" confirmAction={() => cancelOrder(selectedOrderId)}
+                    <ModalConfirm modalId="modalCancelOrder" question="Deseja realmente cancelar o pedido?"
+                        confirmAction={() => cancelOrder(selectedOrderId)}
                     />
-                    <ModalConfirm modalId="modalEvolveOrder" question="Deseja realmente evoluir o pedido?" confirmAction={() => evolveOrder(selectedOrderId)}
+                    <ModalConfirm modalId="modalEvolveOrder" question="Deseja realmente evoluir o pedido?"
+                        confirmAction={() => evolveOrder(selectedOrderId)}
                     />
                     <TableOrders items={orders} handleCancelOrder={handleCancelOrder} handleEvolveOrder={handleEvolveOrder} />
                 </> :

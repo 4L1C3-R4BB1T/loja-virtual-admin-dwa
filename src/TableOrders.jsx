@@ -13,7 +13,8 @@ const TableOrders = ({ items, handleCancelOrder, handleEvolveOrder }) => {
                 </tr>
             </thead>
             <tbody>
-                {items.map(o => <TableOrdersLine item={o} key={o.id} handleCancelOrder={handleCancelOrder} handleEvolveOrder={handleEvolveOrder} />)}
+                {items.map(o => <TableOrdersLine item={o} key={o.id} handleCancelOrder={handleCancelOrder}
+                    handleEvolveOrder={handleEvolveOrder} />)}
             </tbody>
         </table>
     );
