@@ -8,7 +8,7 @@ const TableProductsLine = ({ item, handleDeleteProduct }) => {
             <td>{CurrencyFormatter.format(item.preco)}</td>
             <td>{NumberFormatter.format(item.estoque, 6)}</td>
             <td>
-                <button className="btn btn-outline-danger btn-sm" title="Excluir Produto" accordion
+                <button className="btn btn-outline-danger btn-sm" title="Excluir Produto"
                     onClick={() => handleDeleteProduct(item.id)}>
                     <i className="bi bi-x-circle"></i>
                 </button>
