@@ -13,8 +13,7 @@ const Orders = () => {
 
     const loadOrders = (state) => {
         setLoading(true);
-        const ordersEndpoint = `obter_pedidos_por_estado/${state}`;
-        api.get(ordersEndpoint)
+        api.get(`obter_pedidos_por_estado/${state}`)
             .then((response) => {
                 setOrders(response.data);
             })
@@ -35,7 +34,7 @@ const Orders = () => {
                 }
             })
             .catch(error => {
-                console.error('Erro ao cancelar pedido:', error);
+                console.log('Erro ao cancelar pedido:', error);
             })
             .finally(() => {
                 setLoading(false);

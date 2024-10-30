@@ -12,8 +12,7 @@ const Users = () => {
 
     const loadUsers = () => {
         setLoading(true);
-        const usersEndpoint = `obter_usuarios`;
-        api.get(usersEndpoint)
+        api.get("obter_usuarios")
             .then((response) => {
                 setUsers(response.data);
             })
@@ -33,11 +32,12 @@ const Users = () => {
         setLoading(true);
         api.post(`excluir_usuario`, { id_usuario: userId })
             .then(response => {
-                if (response.status === 204)
+                if (response.status === 204) {
                     loadUsers();
+                }
             })
             .catch(error => {
-                console.error('Erro ao excluir usuário:', error);
+                console.log('Erro ao excluir usuário:', error);
             })
             .finally(() => {
                 setLoading(false);

@@ -12,8 +12,7 @@ const Products = () => {
 
     const loadProducts = () => {
         setLoading(true);
-        const productsEndpoint = "obter_produtos";
-        api.get(productsEndpoint)
+        api.get("obter_produtos")
             .then((response) => {
                 setProducts(response.data);
             })
@@ -34,7 +33,7 @@ const Products = () => {
                 }
             })
             .catch(error => {
-                console.error('Erro ao excluir produto:', error);
+                console.log('Erro ao excluir produto:', error);
             })
             .finally(() => {
                 setLoading(false);

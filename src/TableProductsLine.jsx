@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { CurrencyFormatter, NumberFormatter } from "./formatters";
 
 const TableProductsLine = ({ item, handleDeleteProduct }) => {
@@ -12,6 +13,10 @@ const TableProductsLine = ({ item, handleDeleteProduct }) => {
                     onClick={() => handleDeleteProduct(item.id)}>
                     <i className="bi bi-trash"></i>
                 </button>
+                <Link to={`/products/${item.id}`} className="btn btn-outline-primary btn-sm ms-2"
+                    title="Alterar">
+                    <i className="bi bi-pencil"></i>
+                </Link>
             </td>
         </tr>
     );
