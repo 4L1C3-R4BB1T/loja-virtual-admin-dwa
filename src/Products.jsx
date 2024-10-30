@@ -29,8 +29,9 @@ const Products = () => {
         setLoading(true);
         api.post("excluir_produto", {"id_produto": productId})
             .then(response => {
-                if (response.status === 204)
+                if (response.status === 204) {
                     loadProducts();
+                }
             })
             .catch(error => {
                 console.error('Erro ao excluir produto:', error);

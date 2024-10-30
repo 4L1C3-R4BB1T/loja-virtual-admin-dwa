@@ -10,7 +10,7 @@ const TableUsersLine = ({ item, handleDeleteUser }) => {
             <td>
                 <button className="btn btn-outline-danger btn-sm" title="Excluir Usuario"
                     onClick={() => handleDeleteUser(item.id)}>
-                    <i className="bi bi-x-circle"></i>
+                    <i className="bi bi-trash"></i>
                 </button>
             </td>
         </tr>

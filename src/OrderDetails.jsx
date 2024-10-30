@@ -5,10 +5,10 @@ import api from "./axiosApi";
 import { CurrencyFormatter, DateTimeFormatter, NumberFormatter, StringFormatter } from "./formatters";
 
 const OrderDetails = () => {
-    const [order, setOrder] = useState(null)
-    const [loading, setLoading] = useState(true)
-    const orderId = useParams().id
-    const navigate = useNavigate()
+    const [order, setOrder] = useState(null);
+    const [loading, setLoading] = useState(true);
+    const orderId = useParams().id;
+    const navigate = useNavigate();
 
     useEffect(() => {
         setLoading(true);
@@ -73,4 +73,4 @@ const OrderDetails = () => {
     )
 }
 
-export default OrderDetails
+export default OrderDetails;

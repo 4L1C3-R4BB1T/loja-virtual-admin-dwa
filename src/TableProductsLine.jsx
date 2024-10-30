@@ -10,7 +10,7 @@ const TableProductsLine = ({ item, handleDeleteProduct }) => {
             <td>
                 <button className="btn btn-outline-danger btn-sm" title="Excluir Produto"
                     onClick={() => handleDeleteProduct(item.id)}>
-                    <i className="bi bi-x-circle"></i>
+                    <i className="bi bi-trash"></i>
                 </button>
             </td>
         </tr>
