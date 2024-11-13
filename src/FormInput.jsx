@@ -8,7 +8,7 @@ const FormInput = ({ type, field, onChange, label, value, error, autofocus = fal
                     placeholder=" " id={field} name={field} value={value || ""} onChange={onChange}
                     autoFocus={autofocus} />
                 <label htmlFor={field}>{label}</label>
-                {error && <div className="invalid-feedback">{error}</div>}
+                {error && <div className="invalid-feedback" dangerouslySetInnerHTML={{__html: error}} />}
             </div>
         </>
     );

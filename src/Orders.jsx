@@ -27,7 +27,7 @@ const Orders = () => {
 
     const cancelOrder = (orderId) => {
         setLoading(true);
-        api.post("admin/cancelar_pedido", { "id_pedido": orderId })
+        api.postForm("admin/cancelar_pedido", { "id_pedido": orderId })
             .then(response => {
                 if (response.status === 204) {
                     loadOrders(orderState);
@@ -43,7 +43,7 @@ const Orders = () => {
 
     const evolveOrder = (orderId) => {
         setLoading(true);
-        api.post("admin/evoluir_pedido", { "id_pedido": orderId })
+        api.postForm("admin/evoluir_pedido", { "id_pedido": orderId })
             .then(response => {
                 if (response.status === 204) {
                     loadOrders(orderState);

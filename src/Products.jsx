@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { NavLink } from "react-router-dom";
 import api from "./axiosApi";
 import Loading from "./Loading";
 import ModalConfirm from "./ModalConfirm";
@@ -26,7 +27,7 @@ const Products = () => {
     
     const deleteProduct = (productId) => {
         setLoading(true);
-        api.post("admin/excluir_produto", { "id_produto": productId })
+        api.postForm("admin/excluir_produto", { "id_produto": productId })
             .then(response => {
                 if (response.status === 204) {
                     loadProducts();
@@ -52,6 +53,7 @@ const Products = () => {
 
     return (
         <>
+            <NavLink to="/products/create" className="btn btn-primary my-3">Novo Produto</NavLink>
             {products.length > 0 ?
                 <>
                     <ModalConfirm modalId="modalDeleteProduct" question="Deseja realmente excluir o produto?"

@@ -67,7 +67,7 @@ const EditProduct = () => {
             <div className="d-flex justify-content-between align-items-center">
                 <h1>Alteração de Produto</h1>
             </div>
-            <form onSubmit={handleSubmit} noValidate autoComplete="off">
+            <form onSubmit={handleSubmit} noValidate autoComplete='off' className='mb-3'>
                 <ProductForm handleChange={localHandleChange} inputs={inputs} errors={errors} isNew={false} />
                 <FormButtons cancelTarget="/products" />
             </form>

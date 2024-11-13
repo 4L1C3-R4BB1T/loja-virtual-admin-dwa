@@ -1,5 +1,6 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Authorization from "./Authorization";
+import CreateProduct from "./CreateProduct";
 import EditProduct from "./EditProduct";
 import Home from "./Home";
 import Layout from "./Layout";
@@ -18,6 +19,7 @@ const App = () => {
                     <Route path="/users" element={<Authorization><Users /></Authorization>} />
                     <Route path="/products" element={<Authorization><Products /></Authorization>} />
                     <Route path="/products/:id" element={<Authorization><EditProduct /></Authorization>} />
+                    <Route path="/products/create" element={<Authorization><CreateProduct /></Authorization>} />
                     <Route path="/orders" element={<Authorization><Orders /></Authorization>} />
                     <Route path="/orders/:id" element={<Authorization><OrderDetails /></Authorization>} />
                 </Route>

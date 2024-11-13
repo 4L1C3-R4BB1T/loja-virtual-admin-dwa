@@ -26,7 +26,7 @@ const Users = () => {
 
     const deleteUser = (userId) => {
         setLoading(true);
-        api.post("admin/excluir_usuario", { "id_usuario": userId })
+        api.postForm("admin/excluir_usuario", { "id_usuario": userId })
             .then(response => {
                 if (response.status === 204) {
                     loadUsers();
