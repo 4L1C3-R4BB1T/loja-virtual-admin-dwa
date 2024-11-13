@@ -7,12 +7,12 @@ import TableUsers from "../TableUsers";
 
 const Users = () => {
     const [users, setUsers] = useState([]);
-    const [selectedUserId, setSelectedUserId] = useState(0);
     const [loading, setLoading] = useState(true);
+    const [selectedUserId, setSelectedUserId] = useState(0);
 
     const loadUsers = () => {
         setLoading(true);
-        api.get("obter_usuarios")
+        api.get("admin/obter_usuarios")
             .then((response) => {
                 setUsers(response.data);
             })
@@ -22,22 +22,18 @@ const Users = () => {
             .finally(() => {
                 setLoading(false);
             });
-    }
-    
-    useEffect(() => {
-        loadUsers();
-    }, []);
+    };
 
     const deleteUser = (userId) => {
         setLoading(true);
-        api.post(`excluir_usuario`, { id_usuario: userId })
+        api.post("admin/excluir_usuario", { "id_usuario": userId })
             .then(response => {
                 if (response.status === 204) {
                     loadUsers();
                 }
             })
             .catch(error => {
-                console.log('Erro ao excluir usuário:', error);
+                console.error('Erro ao excluir o usuário:', error);
             })
             .finally(() => {
                 setLoading(false);
@@ -46,15 +42,19 @@ const Users = () => {
 
     const handleDeleteUser = (userId) => {
         setSelectedUserId(userId);
-        const modal = new bootstrap.Modal(document.getElementById('modelDeleteUser'));
+        const modal = new bootstrap.Modal(document.getElementById('modalDeleteUser'));
         modal.show();
     }
+
+    useEffect(() => {
+        loadUsers();
+    }, []);
 
     return (
         <>
             {users.length > 0 ?
                 <>
-                    <ModalConfirm modalId="modelDeleteUser" question="Deseja realmente excluir o usuário?"
+                    <ModalConfirm modalId="modalDeleteUser" question="Deseja realmente excluir este usuário?"
                         confirmAction={() => deleteUser(selectedUserId)} />
                     <TableUsers items={users} handleDeleteUser={handleDeleteUser} />
                 </> :

@@ -9,7 +9,6 @@ import ProductForm from "./ProductForm";
 const EditProduct = () => {
     const [inputs, setInputs] = useState({});
     const [errors, setErrors] = useState({});
-    const [modal, setModal] = useState(undefined);
     const [loading, setLoading] = useState(true);
     const navigate = useNavigate();
     
@@ -21,7 +20,7 @@ const EditProduct = () => {
     
     function loadProductById(id) {
         setLoading(true);
-        api.get(`obter_produto/${id}`)
+        api.get(`admin/obter_produto/${id}`)
             .then(response => {
                 setInputs(response.data);
             })
@@ -33,10 +32,11 @@ const EditProduct = () => {
             });
     }
     
-    function handleSubmit(event) {
+    async function handleSubmit(event) {
         event.preventDefault();
-        
-        api.post("/alterar_produto", inputs)
+        setLoading(true);
+        const editProductEndpoint = "admin/alterar_produto";
+        await api.post(editProductEndpoint, inputs)
             .then((response) => {
                 if (response.status === 204) {
                     navigate("/products");
@@ -45,7 +45,11 @@ const EditProduct = () => {
                 }
             })
             .catch((error) => {
-                console.log(error);
+                if (error && error.response && error.response.data)
+                    setErrors(parseErrors(error.response.data));
+            })
+            .finally(() => {
+                setLoading(false);
             });
     }
     

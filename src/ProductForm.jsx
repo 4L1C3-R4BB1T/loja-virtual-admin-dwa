@@ -1,8 +1,9 @@
+import PropTypes from "prop-types";
 import CleaveInput from "./CleaveInput";
 import FormInput from "./FormInput";
 import FormTextarea from "./FormTextarea";
 
-const ProductForm = ({ handleChange, inputs, errors, isNew }) => {
+const ProductForm = ({ handleChange, inputs, errors }) => {
     return (
         <>
             <div className="row">
@@ -18,28 +19,35 @@ const ProductForm = ({ handleChange, inputs, errors, isNew }) => {
                     <CleaveInput type="text" field="preco" label="Preço" value={inputs?.preco}
                         onChange={handleChange} error={errors?.preco}
                         options={{
-                            prefix: 'R$ ',
                             numeral: true,
                             numeralThousandsGroupStyle: 'thousand',
+                            prefix: 'R$ ',
                             rawValueTrimPrefix: true,
-                            numeralDecimalMark: ',',
-                            delimiter: '.'
+                            delimiter: '.',
+                            numeralDecimalMark: ','
                         }} />
                 </div>
                 <div className="col-6 mb-3">
-                    <CleaveInput type="text" field="estoque" label="Estoque" value={inputs?.estoque}
-                        onChange={handleChange} error={errors?.estoque}
+                    <CleaveInput type="text" field="estoque"
+                        label="Estoque" onChange={handleChange}
+                        value={inputs.estoque} error={errors?.estoque}
                         options={{
                             numeral: true,
                             numeralPositiveOnly: true,
                             numeralThousandsGroupStyle: 'thousand',
-                            numeralDecimalMark: ',',
-                            delimiter: '.'
+                            delimiter: '.',
+                            numeralDecimalMark: ','
                         }} />
-                </div> 
+                </div>
             </div>
         </>
     );
 }
+
+ProductForm.propTypes = {
+    handleChange: PropTypes.func.isRequired,
+    inputs: PropTypes.object.isRequired,
+    errors: PropTypes.object
+};
 
 export default ProductForm;

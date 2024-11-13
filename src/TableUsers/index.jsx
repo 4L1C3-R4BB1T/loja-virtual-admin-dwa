@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import TableUsersLine from "../TableUsersLine";
 
 const TableUsers = ({ items, handleDeleteUser }) => {
@@ -13,10 +14,15 @@ const TableUsers = ({ items, handleDeleteUser }) => {
                 </tr>
             </thead>
             <tbody>
-                {items.map(o => <TableUsersLine item={o} key={o.id} handleDeleteUser={handleDeleteUser} />)}
+                {items.map(u => <TableUsersLine item={u} key={u.id} handleDeleteUser={handleDeleteUser} />)}
             </tbody>
         </table>
     );
 }
+
+TableUsers.propTypes = {
+    items: PropTypes.array.isRequired,
+    handleDeleteUser: PropTypes.func.isRequired
+};
 
 export default TableUsers;

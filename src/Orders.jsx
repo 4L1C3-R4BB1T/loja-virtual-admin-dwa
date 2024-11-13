@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import api from "./axiosApi";
+import api from './axiosApi';
 import Loading from "./Loading";
 import ModalConfirm from "./ModalConfirm";
 import NoOrders from "./NoOrders";
@@ -13,7 +13,7 @@ const Orders = () => {
 
     const loadOrders = (state) => {
         setLoading(true);
-        api.get(`obter_pedidos_por_estado/${state}`)
+        api.get(`admin/obter_pedidos_por_estado/${state}`)
             .then((response) => {
                 setOrders(response.data);
             })
@@ -27,14 +27,14 @@ const Orders = () => {
 
     const cancelOrder = (orderId) => {
         setLoading(true);
-        api.post(`cancelar_pedido/${orderId}`)
+        api.post("admin/cancelar_pedido", { "id_pedido": orderId })
             .then(response => {
                 if (response.status === 204) {
                     loadOrders(orderState);
                 }
             })
             .catch(error => {
-                console.log('Erro ao cancelar pedido:', error);
+                console.error('Erro ao cancelar pedido:', error);
             })
             .finally(() => {
                 setLoading(false);
@@ -43,7 +43,7 @@ const Orders = () => {
 
     const evolveOrder = (orderId) => {
         setLoading(true);
-        api.post(`evoluir_pedido/${orderId}`)
+        api.post("admin/evoluir_pedido", { "id_pedido": orderId })
             .then(response => {
                 if (response.status === 204) {
                     loadOrders(orderState);

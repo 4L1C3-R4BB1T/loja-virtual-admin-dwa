@@ -10,19 +10,23 @@ const OrderDetails = () => {
     const orderId = useParams().id;
     const navigate = useNavigate();
 
-    useEffect(() => {
+   useEffect(() => {
         setLoading(true);
-        api.get(`obter_pedido/${orderId}`)
+        api.get(`admin/obter_pedido/${orderId}`)
             .then(response => {
-                response.status === 200 ? setOrder(response.data) : navigate("/orders");
+                if (response.status === 200) {
+                    setOrder(response.data);
+                } else {
+                    navigate("/orders")
+                }
             })
             .catch(error => {
-                console.log("Erro ao carregar pedido:", error);
-                navigate("/orders");
+                console.error('Erro ao carregar pedido:', error);
+                navigate("/orders")
             })
             .finally(() => {
                 setLoading(false);
-            })
+            });
     }, [orderId]);
 
     if (!order) {

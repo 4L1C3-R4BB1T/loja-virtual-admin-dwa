@@ -12,7 +12,7 @@ const Products = () => {
 
     const loadProducts = () => {
         setLoading(true);
-        api.get("obter_produtos")
+        api.get("admin/obter_produtos")
             .then((response) => {
                 setProducts(response.data);
             })
@@ -26,7 +26,7 @@ const Products = () => {
     
     const deleteProduct = (productId) => {
         setLoading(true);
-        api.post("excluir_produto", {"id_produto": productId})
+        api.post("admin/excluir_produto", { "id_produto": productId })
             .then(response => {
                 if (response.status === 204) {
                     loadProducts();

@@ -1,3 +1,5 @@
+import PropTypes from "prop-types";
+
 const ModalConfirm = ({ question, confirmAction, cancelAction, modalId }) => {
     return (
         <div className="modal fade" id={modalId} data-bs-backdrop="static" data-bs-keyboard="false" tabIndex="-1">
@@ -22,4 +24,11 @@ const ModalConfirm = ({ question, confirmAction, cancelAction, modalId }) => {
     );
 }
 
-export default ModalConfirm;
+ModalConfirm.propTypes = {
+    question: PropTypes.string.isRequired,
+    confirmAction: PropTypes.func.isRequired,
+    cancelAction: PropTypes.func,
+    modalId: PropTypes.string.isRequired
+};
+
+export default ModalConfirm

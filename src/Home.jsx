@@ -1,7 +1,13 @@
+import { isAdmin } from "./authService";
+import HomeLogin from "./HomeLogin";
+import HomeLogout from "./HomeLogout";
+
 const Home = () => {
     return (
-        <h1>Página Principal</h1>
-    );
+        <>
+            {isAdmin() ? <HomeLogout /> : <HomeLogin />}
+        </>
+    )
 }
 
 export default Home;

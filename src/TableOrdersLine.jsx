@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import { CurrencyFormatter, DateTimeFormatter, NumberFormatter, StringFormatter } from "./formatters";
 
@@ -26,5 +27,11 @@ const TableOrdersLine = ({ item, handleCancelOrder, handleEvolveOrder }) => {
         </tr>
     );
 }
+
+TableOrdersLine.propTypes = {
+    item: PropTypes.object.isRequired,
+    handleCancelOrder: PropTypes.func.isRequired,
+    handleEvolveOrder: PropTypes.func.isRequired
+};
 
 export default TableOrdersLine;
