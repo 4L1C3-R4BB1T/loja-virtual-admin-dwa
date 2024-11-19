@@ -1,9 +1,27 @@
 import PropTypes from "prop-types";
+import { useEffect, useState } from "react";
 import CleaveInput from "./CleaveInput";
 import FormInput from "./FormInput";
 import FormTextarea from "./FormTextarea";
+import api from "./axiosApi";
 
 const ProductForm = ({ handleChange, handleFileChange, inputs, errors }) => {
+    const [categories, setCategories] = useState([]);
+    
+    const loadCategories = () => {
+        api.get("admin/obter_categorias")
+            .then((response) => {
+                setCategories(response.data);
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+    }
+
+    useEffect(() => {
+        loadCategories();
+    }, []);
+    
     return (
         <>
             <div className="row">
@@ -15,7 +33,7 @@ const ProductForm = ({ handleChange, handleFileChange, inputs, errors }) => {
                     <FormTextarea field="descricao" label="Descrição" value={inputs?.descricao}
                         onChange={handleChange} error={errors?.descricao} />
                 </div>
-                <div className="col-6 mb-3">
+                <div className="col-4 mb-3">
                     <CleaveInput type="text" field="preco" label="Preço" value={inputs?.preco}
                         onChange={handleChange} error={errors?.preco}
                         options={{
@@ -27,7 +45,7 @@ const ProductForm = ({ handleChange, handleFileChange, inputs, errors }) => {
                             numeralDecimalMark: ','
                         }} />
                 </div>
-                <div className="col-6 mb-3">
+                <div className="col-4 mb-3">
                     <CleaveInput type="text" field="estoque"
                         label="Estoque" onChange={handleChange}
                         value={inputs.estoque} error={errors?.estoque}
@@ -38,6 +56,25 @@ const ProductForm = ({ handleChange, handleFileChange, inputs, errors }) => {
                             delimiter: '.',
                             numeralDecimalMark: ','
                         }} />
+                </div>
+                <div className="col-4 mb-3">
+                    <div className="form-floating">
+                        <select
+                            className="form-select"
+                            id="id_categoria"
+                            name="id_categoria"
+                            value={inputs?.id_categoria || ''}
+                            onChange={handleChange}
+                        >
+                            <option value="" disabled>Selecione uma categoria</option>
+                            {categories.map(category => (
+                                <option key={category.id} value={category.id}>
+                                    {category.descricao}
+                                </option>
+                            ))}
+                        </select>
+                        <label for="id_categoria">Categoria</label>                        
+                    </div>
                 </div>
                 <div className="col-12 mb-3">
                     <label htmlFor="imagem" className="form-label">Foto do Produto</label>

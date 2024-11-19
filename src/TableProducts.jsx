@@ -10,6 +10,7 @@ const TableProducts = ({ items, handleDeleteProduct }) => {
                     <th>Nome</th>
                     <th>Preço</th>
                     <th>Estoque</th>
+                    <th>Categoria</th>
                     <th>Ações</th>
                 </tr>
             </thead>

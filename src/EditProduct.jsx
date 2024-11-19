@@ -36,8 +36,7 @@ const EditProduct = () => {
     async function handleSubmit(event) {
         event.preventDefault();
         setLoading(true);
-        const editProductEndpoint = "admin/alterar_produto";
-        await api.post(editProductEndpoint, inputs)
+        await api.post("admin/alterar_produto", inputs)
             .then((response) => {
                 if (response.status === 204) {
                     navigate("/products");
