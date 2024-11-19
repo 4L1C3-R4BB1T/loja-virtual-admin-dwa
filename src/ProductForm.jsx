@@ -60,7 +60,7 @@ const ProductForm = ({ handleChange, handleFileChange, inputs, errors }) => {
                 <div className="col-4 mb-3">
                     <div className="form-floating">
                         <select
-                            className="form-select"
+                            className={`form-select form-control ${errors?.id_categoria ? 'is-invalid' : ''}`}
                             id="id_categoria"
                             name="id_categoria"
                             value={inputs?.id_categoria || ''}
@@ -73,7 +73,8 @@ const ProductForm = ({ handleChange, handleFileChange, inputs, errors }) => {
                                 </option>
                             ))}
                         </select>
-                        <label for="id_categoria">Categoria</label>                        
+                        <label for="id_categoria">Categoria</label>
+                        {errors?.id_categoria && <div className="invalid-feedback" dangerouslySetInnerHTML={{__html: errors?.id_categoria}} />}                        
                     </div>
                 </div>
                 <div className="col-12 mb-3">
