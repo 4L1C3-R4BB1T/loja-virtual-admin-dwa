@@ -5,7 +5,7 @@ import FormInput from "./FormInput";
 import FormTextarea from "./FormTextarea";
 import api from "./axiosApi";
 
-const ProductForm = ({ handleChange, handleFileChange, inputs, errors }) => {
+const ProductForm = ({ handleChange, handleFileChange, inputs, errors, isEdicao = false }) => {
     const [categories, setCategories] = useState([]);
     
     const loadCategories = () => {
@@ -26,15 +26,15 @@ const ProductForm = ({ handleChange, handleFileChange, inputs, errors }) => {
         <>
             <div className="row">
                 <div className="col-12 mb-3">
-                    <FormInput type="text" field="nome" label="Nome" value={inputs?.nome}
+                    <FormInput type="text" field="nome" label="Nome" value={inputs?.nome || ''}
                         onChange={handleChange} error={errors?.nome} autofocus={true} />
                 </div>
                 <div className="col-12 mb-3">
-                    <FormTextarea field="descricao" label="Descrição" value={inputs?.descricao}
+                    <FormTextarea field="descricao" label="Descrição" value={inputs?.descricao || ''}
                         onChange={handleChange} error={errors?.descricao} />
                 </div>
                 <div className="col-4 mb-3">
-                    <CleaveInput type="text" field="preco" label="Preço" value={inputs?.preco}
+                    <CleaveInput type="text" field="preco" label="Preço" value={inputs?.preco?.toString() || ''}
                         onChange={handleChange} error={errors?.preco}
                         options={{
                             numeral: true,
@@ -48,13 +48,12 @@ const ProductForm = ({ handleChange, handleFileChange, inputs, errors }) => {
                 <div className="col-4 mb-3">
                     <CleaveInput type="text" field="estoque"
                         label="Estoque" onChange={handleChange}
-                        value={inputs.estoque} error={errors?.estoque}
+                        value={inputs?.estoque?.toString() || ''} error={errors?.estoque}
                         options={{
-                            numeral: true,
-                            numeralPositiveOnly: true,
-                            numeralThousandsGroupStyle: 'thousand',
-                            delimiter: '.',
-                            numeralDecimalMark: ','
+                            numeral: true,                  
+                            numeralPositiveOnly: true,      
+                            numeralDecimalScale: 0,         
+                            numeralThousandsGroupStyle: 'none', 
                         }} />
                 </div>
                 <div className="col-4 mb-3">
@@ -63,20 +62,29 @@ const ProductForm = ({ handleChange, handleFileChange, inputs, errors }) => {
                             className={`form-select form-control ${errors?.id_categoria ? 'is-invalid' : ''}`}
                             id="id_categoria"
                             name="id_categoria"
-                            value={inputs?.id_categoria || ''}
+                            value={inputs?.id_categoria}
                             onChange={handleChange}
                         >
-                            <option value="" disabled>Selecione uma categoria</option>
+                            <option>Selecione uma categoria</option>
                             {categories.map(category => (
                                 <option key={category.id} value={category.id}>
                                     {category.descricao}
                                 </option>
                             ))}
                         </select>
-                        <label for="id_categoria">Categoria</label>
+                        <label htmlFor="id_categoria">Categoria</label>
                         {errors?.id_categoria && <div className="invalid-feedback" dangerouslySetInnerHTML={{__html: errors?.id_categoria}} />}                        
                     </div>
                 </div>
+
+                { isEdicao && (
+                     <div className="col-12">
+                        <div className="text-center my-3">
+                            <img className="rounded" style={{ width: '250px', height: '250px', objectFit: 'cover', objectPosition: 'center'}} src={inputs.imagemUrl}/>
+                        </div>
+                  </div>
+                )}
+               
                 <div className="col-12 mb-3">
                     <label htmlFor="imagem" className="form-label">Foto do Produto</label>
                     <input
@@ -97,7 +105,8 @@ const ProductForm = ({ handleChange, handleFileChange, inputs, errors }) => {
 ProductForm.propTypes = {
     handleChange: PropTypes.func.isRequired,
     inputs: PropTypes.object,
-    errors: PropTypes.object
+    errors: PropTypes.object,
+    isEdicao: PropTypes.bool,
 };
 
 export default ProductForm;

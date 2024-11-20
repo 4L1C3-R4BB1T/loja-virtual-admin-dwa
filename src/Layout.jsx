@@ -9,7 +9,9 @@ const Layout = () => {
             <div className="container flex-fill">
                 <Outlet />
             </div>
-            <Footer />
+            <div className="pt-5">
+                <Footer />
+            </div>
         </div>
     );
 };

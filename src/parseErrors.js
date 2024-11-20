@@ -1,6 +1,7 @@
 function parseErrors(data) {
     const errors = {};
-    data.detail.forEach(error => {
+    if (!('detail' in data) && !Array.isArray(data)) return errors;
+    ('detail' in data ? data.detail : data).forEach(error => {
         const fieldName = error.loc[error.loc.length - 1];
         const fullMessage = error.msg;
         const errorMessage = fullMessage.includes(',') 
@@ -8,7 +9,6 @@ function parseErrors(data) {
             : fullMessage;
         errors[fieldName] = errorMessage;
     });
-    console.log(errors);
     return errors;
 }
 

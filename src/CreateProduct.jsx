@@ -16,8 +16,17 @@ const CreateProduct = () => {
 
     async function handleSubmit(event) {
         event.preventDefault();
+ 
+        if (!inputs['id_categoria']) {
+            setErrors({
+                id_categoria: 'A categoria é obrigatória',
+            });
+            return;
+        }
+
         setLoading(true);
         const formData = new FormData();
+
         Object.entries(inputs).forEach(([key, value]) => {
             formData.append(key, value);
         });
@@ -36,7 +45,11 @@ const CreateProduct = () => {
             })
             .catch((error) => {
                 if (error && error.response && error.response.data) {
-                    setErrors(parseErrors(error.response.data));
+                    let payload = error.response.data;
+                    if (!Array.isArray(error.response.data) && typeof error.response.data === 'object' && !('detail' in payload)) {
+                        payload = [payload];
+                    } 
+                    setErrors(parseErrors(payload));
                 }
             })
             .finally(() => {

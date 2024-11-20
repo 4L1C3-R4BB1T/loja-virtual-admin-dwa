@@ -7,6 +7,7 @@ const TableProducts = ({ items, handleDeleteProduct }) => {
             <thead>
                 <tr>
                     <th>Código</th>
+                    <th>Foto</th>
                     <th>Nome</th>
                     <th>Preço</th>
                     <th>Estoque</th>
