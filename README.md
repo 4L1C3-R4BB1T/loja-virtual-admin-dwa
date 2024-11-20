@@ -30,12 +30,9 @@ npm run dev
 
 ---
 
-## 👩‍💼Usuários Teste
+## 👩‍💼Usuário Teste
 
 ```
-email: joao@email.com  
-senha: 123aA@
-
 email: admin@email.com
 senha: 123aA@
 ```
