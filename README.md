@@ -44,14 +44,14 @@ senha: 123aA@
 
 ## 🆕 Adição de Categorias
 
-![Listar Categorias](https://github.com/4L1C3-R4BB1T/loja-virtual-admin-dwa/tree/feature/categories/assets/1.png)
+![Listar Categorias](https://github.com/4L1C3-R4BB1T/loja-virtual-admin-dwa/blob/feature/categories/assets/1.png)
 
-![Cadastrar Categoria](https://github.com/4L1C3-R4BB1T/loja-virtual-admin-dwa/tree/feature/categories/assets/2.png)
+![Cadastrar Categoria](https://github.com/4L1C3-R4BB1T/loja-virtual-admin-dwa/blob/feature/categories/assets/2.png)
 
-![Atualizar Categoria](https://github.com/4L1C3-R4BB1T/loja-virtual-admin-dwa/tree/feature/categories/assets/3.png)
+![Atualizar Categoria](https://github.com/4L1C3-R4BB1T/loja-virtual-admin-dwa/blob/feature/categories/assets/3.png)
 
 ## 🆕 Visualização da Foto do Produto
 
-![Listar Produtos](https://github.com/4L1C3-R4BB1T/loja-virtual-admin-dwa/tree/feature/categories/assets/4.png)
+![Listar Produtos](https://github.com/4L1C3-R4BB1T/loja-virtual-admin-dwa/blob/feature/categories/assets/4.png)
 
-![Atualizar Produto](https://github.com/4L1C3-R4BB1T/loja-virtual-admin-dwa/tree/feature/categories/assets/5.png)
+![Atualizar Produto](https://github.com/4L1C3-R4BB1T/loja-virtual-admin-dwa/blob/feature/categories/assets/5.png)
