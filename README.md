@@ -13,7 +13,7 @@ Esse projeto faz parte da disciplina de Desenvolvimento Web Avançado, ministrad
 Clone esse repositório:
 
 ```bash
-https://github.com/4L1C3-R4BB1T/loja-virtual-admin-dwa.git
+git clone https://github.com/4L1C3-R4BB1T/loja-virtual-admin-dwa.git
 ```
 
 Instale as dependências do projeto:
